@@ -16,13 +16,13 @@ model company {
   lng         String?   @db.VarChar(64)
   phoneNumber String?   @db.VarChar(64)
   address     String?   @db.VarChar(64)
-  link        String?   @db.VarChar(512)
   facility    facility?
   hours       hours?
   machine     machine?
   price       price?
   program     program?
   review      review?
+  comment     comment[]
 }
 
 model facility {
@@ -83,7 +83,6 @@ model machine {
 
 model price {
   company_id Int     @id
-  flag       Int?    @db.TinyInt
   month1     String? @db.VarChar(64)
   month3     String? @db.VarChar(64)
   month6     String? @db.VarChar(64)
@@ -115,16 +114,21 @@ model review {
   review7    String? @db.VarChar(256)
   review8    String? @db.VarChar(256)
   review9    String? @db.VarChar(256)
-  review10   String? @db.VarChar(256)
-  review11   String? @db.VarChar(256)
-  review12   String? @db.VarChar(256)
-  review13   String? @db.VarChar(256)
-  review14   String? @db.VarChar(256)
-  review15   String? @db.VarChar(256)
-  review16   String? @db.VarChar(256)
-  review17   String? @db.VarChar(256)
-  review18   String? @db.VarChar(256)
-  review19   String? @db.VarChar(256)
   company_id Int     @id
   company    company @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_review_company1")
+}
+
+model comment {
+  company_id Int     @id
+  kind       Int?    @db.Int // 친절해요
+  tidy       Int?    @db.Int // 시설이 깔끔해요
+  various    Int?    @db.Int // 기구가 다양해요
+  wide       Int?    @db.Int // 공간이 넓어요
+  reasonable Int?    @db.Int // 가격이 합리적이다
+  pose       Int?    @db.Int // 자세를 꼼꼼히 봐주세요
+  advice     Int?    @db.Int // 상담이 자세해요
+  parking    Int?    @db.Int // 주차하기 편해요
+  class      Int?    @db.Int // 수업이 체계적이에요
+  GX         Int?    @db.Int // 프로그램이 다양해요
+  company    company @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_comment_company1")
 }
