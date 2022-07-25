@@ -8,50 +8,52 @@ datasource db {
 }
 
 model company {
-  id          Int       @id @default(autoincrement())
-  name        String?   @db.VarChar(64)
-  img         String?   @db.VarChar(128)
-  grade       String?   @db.VarChar(64)
-  lat         String?   @db.VarChar(64)
-  lng         String?   @db.VarChar(64)
-  phoneNumber String?   @db.VarChar(64)
-  address     String?   @db.VarChar(64)
-  link        String?   @db.VarChar(512)
-  facility    facility?
-  hours       hours?
-  machine     machine?
-  price       price?
-  program     program?
-  review      review?
+  id          Int     @id
+  name        String? @db.VarChar(64)
+  img         String? @db.VarChar(512)
+  grade       String? @db.VarChar(64)
+  lat         String? @db.VarChar(64)
+  lng         String? @db.VarChar(64)
+  phoneNumber String? @db.VarChar(64)
+  address     String? @db.VarChar(64)
+  // facility    facility?
+  // hours       hours?
+  // machine     machine?
+  // price       price?
+  // program     program?
+  // review      review?
+  // comment     comment[]
 }
 
 model facility {
-  company_id Int     @id
-  shower     Int?    @db.TinyInt
-  locker     Int?    @db.TinyInt
-  sweatsuit  Int?    @db.TinyInt
-  company    company @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_facility_company1")
+  company_id Int  @id
+  shower     Int? @db.TinyInt
+  locker     Int? @db.TinyInt
+  sweatsuit  Int? @db.TinyInt
+  // company    company @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_facility_company1")
 
-  @@index([company_id], map: "fk_facility_company1_idx")
+  // @@index([company_id], map: "fk_facility_company1_idx")
 }
 
 model hours {
-  company_id Int       @id
-  mon_open   DateTime? @db.DateTime(0)
-  mon_close  DateTime? @db.DateTime(0)
-  tue_open   DateTime? @db.DateTime(0)
-  tue_close  DateTime? @db.DateTime(0)
-  wed_open   DateTime? @db.DateTime(0)
-  wed_close  DateTime? @db.DateTime(0)
-  thu_open   DateTime? @db.DateTime(0)
-  thu_close  DateTime? @db.DateTime(0)
-  fri_open   DateTime? @db.DateTime(0)
-  fri_close  DateTime? @db.DateTime(0)
-  sat_open   DateTime? @db.DateTime(0)
-  sat_close  DateTime? @db.DateTime(0)
-  sun_open   DateTime? @db.DateTime(0)
-  sun_close  DateTime? @db.DateTime(0)
-  company    company   @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_hours_company1")
+  company_id Int     @id
+  mon_open   String? @db.VarChar(64)
+  mon_close  String? @db.VarChar(64)
+  tue_open   String? @db.VarChar(64)
+  tue_close  String? @db.VarChar(64)
+  wed_open   String? @db.VarChar(64)
+  wed_close  String? @db.VarChar(64)
+  thu_open   String? @db.VarChar(64)
+  thu_close  String? @db.VarChar(64)
+  fri_open   String? @db.VarChar(64)
+  fri_close  String? @db.VarChar(64)
+  sat_open   String? @db.VarChar(64)
+  sat_close  String? @db.VarChar(64)
+  sun_open   String? @db.VarChar(64)
+  sun_close  String? @db.VarChar(64)
+  // company    company   @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_hours_company1")
+
+  // @@index([company_id], map: "fk_hours_company1_idx")
 }
 
 model machine {
@@ -76,21 +78,20 @@ model machine {
   machine17  String? @db.VarChar(64)
   machine18  String? @db.VarChar(64)
   machine19  String? @db.VarChar(64)
-  company    company @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_machine_company")
+  // company    company @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_machine_company")
 
-  @@index([company_id], map: "fk_machine_company_idx")
+  // @@index([company_id], map: "fk_machine_company_idx")
 }
 
 model price {
   company_id Int     @id
-  flag       Int?    @db.TinyInt
   month1     String? @db.VarChar(64)
   month3     String? @db.VarChar(64)
   month6     String? @db.VarChar(64)
   month12    String? @db.VarChar(64)
-  company    company @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_price_company1")
+  // company    company @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_price_company1")
 
-  @@index([company_id], map: "fk_price_company1_idx")
+  // @@index([company_id], map: "fk_price_company1_idx")
 }
 
 model program {
@@ -99,32 +100,42 @@ model program {
   GX1        String? @db.VarChar(64)
   GX2        String? @db.VarChar(64)
   GX3        String? @db.VarChar(64)
-  company    company @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_program_company1")
+  // company    company @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_program_company1")
 
-  @@index([company_id], map: "fk_program_company1_idx")
+  // @@index([company_id], map: "fk_program_company1_idx")
 }
 
 model review {
-  review0    String? @db.VarChar(256)
-  review1    String? @db.VarChar(256)
-  review2    String? @db.VarChar(256)
-  review3    String? @db.VarChar(256)
-  review4    String? @db.VarChar(256)
-  review5    String? @db.VarChar(256)
-  review6    String? @db.VarChar(256)
-  review7    String? @db.VarChar(256)
-  review8    String? @db.VarChar(256)
-  review9    String? @db.VarChar(256)
-  review10   String? @db.VarChar(256)
-  review11   String? @db.VarChar(256)
-  review12   String? @db.VarChar(256)
-  review13   String? @db.VarChar(256)
-  review14   String? @db.VarChar(256)
-  review15   String? @db.VarChar(256)
-  review16   String? @db.VarChar(256)
-  review17   String? @db.VarChar(256)
-  review18   String? @db.VarChar(256)
-  review19   String? @db.VarChar(256)
+  review0    String? @db.VarChar(1024)
+  review1    String? @db.VarChar(1024)
+  review2    String? @db.VarChar(1024)
+  review3    String? @db.VarChar(1024)
+  review4    String? @db.VarChar(1024)
+  review5    String? @db.VarChar(1024)
+  review6    String? @db.VarChar(1024)
+  review7    String? @db.VarChar(1024)
+  review8    String? @db.VarChar(1024)
+  review9    String? @db.VarChar(1024)
   company_id Int     @id
-  company    company @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_review_company1")
+  // company    company @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_review_company1")
+
+  // @@index([company_id], map: "fk_review_company1_idx")
+}
+
+model comment {
+  company_id Int  @id
+  kind       Int? @db.Int // 친절해요
+  tidy       Int? @db.Int // 시설이 깔끔해요
+  various    Int? @db.Int // 기구가 다양해요
+  wide       Int? @db.Int // 공간이 넓어요
+  reasonable Int? @db.Int // 가격이 합리적이다
+  pose       Int? @db.Int // 자세를 꼼꼼히 봐주세요
+  advice     Int? @db.Int // 상담이 자세해요
+  parking    Int? @db.Int // 주차하기 편해요
+  class      Int? @db.Int // 수업이 체계적이에요
+  GX         Int? @db.Int // 프로그램이 다양해요
+  care       Int? @db.Int
+  // company    company @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_comment_company1")
+
+  // @@index([company_id], map: "fk_comment_company1_idx")
 }

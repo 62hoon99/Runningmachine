@@ -1,12 +1,13 @@
 import { db } from "./db"
 
 class ReviewService {
-    async findMany(company_id: number) {
-        const queryResult = await db.review.findMany({
+    async findUnique(company_id: number) {
+        const queryResult = await db.review.findUnique({
             where: {
                 company_id,
             },
             select: {
+                company_id: true,
                 review0: true,
                 review1: true,
                 review2: true,
@@ -17,16 +18,6 @@ class ReviewService {
                 review7: true,
                 review8: true,
                 review9: true,
-                review10: true,
-                review11: true,
-                review12: true,
-                review13: true,
-                review14: true,
-                review15: true,
-                review16: true,
-                review17: true,
-                review18: true,
-                review19: true,
             },
         });
         if (!queryResult) {
