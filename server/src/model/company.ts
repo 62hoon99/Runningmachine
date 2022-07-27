@@ -15,7 +15,52 @@ class CompanyService {
                 lng: true,
                 phoneNumber: true,
                 address: true,
-            }
+            },
+        });
+
+        if (!queryResult) {
+            throw new Error("Error!!!");
+        }
+        return queryResult;
+    }
+
+    async findManyWard(ward: string) {
+        const queryResult = await db.company.findMany({
+            where: {
+                address: {
+                    contains: ward,
+                },
+            },
+            select: {
+                id: true,
+                name: true,
+                img: true,
+                grade: true,
+                lat: true,
+                lng: true,
+                phoneNumber: true,
+                address: true,
+            },
+        });
+
+        if (!queryResult) {
+            throw new Error("Error!!!");
+        }
+        return queryResult;
+    }
+
+    async findMany() {
+        const queryResult = await db.company.findMany({
+            select: {
+                id: true,
+                name: true,
+                img: true,
+                grade: true,
+                lat: true,
+                lng: true,
+                phoneNumber: true,
+                address: true,
+            },
         });
 
         if (!queryResult) {
