@@ -106,16 +106,16 @@ model program {
 }
 
 model review {
-  review0    String? @db.VarChar(1024)
-  review1    String? @db.VarChar(1024)
-  review2    String? @db.VarChar(1024)
-  review3    String? @db.VarChar(1024)
-  review4    String? @db.VarChar(1024)
-  review5    String? @db.VarChar(1024)
-  review6    String? @db.VarChar(1024)
-  review7    String? @db.VarChar(1024)
-  review8    String? @db.VarChar(1024)
-  review9    String? @db.VarChar(1024)
+  review0    String? @db.Text
+  review1    String? @db.Text
+  review2    String? @db.Text
+  review3    String? @db.Text
+  review4    String? @db.Text
+  review5    String? @db.Text
+  review6    String? @db.Text
+  review7    String? @db.Text
+  review8    String? @db.Text
+  review9    String? @db.Text
   company_id Int     @id
   // company    company @relation(fields: [company_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_review_company1")
 
